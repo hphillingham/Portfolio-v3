@@ -10,7 +10,7 @@ export async function GET({ url }) {
 	const response = await octokit.request(
 		"GET /repos/{username}/{repo}/commits",
 		{
-			username: "harry55494",
+			username: "hphillingham",
 			repo: url.searchParams.get("repo"),
 			sha: url.searchParams.get("branch"),
 			per_page: 10,

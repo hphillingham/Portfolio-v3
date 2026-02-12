@@ -26,7 +26,7 @@
         hikers_challenge: {
             title:
                 "Climb mountains and earn badges! A demo Android App created as part of an MSc Course.",
-            image: "https://media.githubusercontent.com/media/Harry55494/Hikers-Challenge/refs/heads/master/assets/icon-circle-border.png"
+            image: "https://media.githubusercontent.com/media/hphillingham/Hikers-Challenge/refs/heads/master/assets/icon-circle-border.png"
         },
         portfolio_v3: {
             title:
@@ -88,7 +88,7 @@
                         repoOverwriteData?.title || repo.title?.split("[")[0] || "",
                     image:
                         repoOverwriteData?.image ||
-                        "https://raw.githubusercontent.com/Harry55494/" +
+                        "https://raw.githubusercontent.com/hphillingham/" +
                             repo.name +
                             "/refs/heads/master/icon.png",
                     link: repoOverwriteData?.link || repo.html_url,
@@ -219,7 +219,7 @@
 
         global_extractedActivityData = data.repos.filter((repo) => repo.type !== 'PushEvent').map((repo) => {
 
-            const repo_name = repo.repo.name.replace('Harry55494/', '')
+            const repo_name = repo.repo.name.replace('hphillingham/', '')
 
             const base_title_text = (() => {
                 switch (repo.type) {
@@ -315,7 +315,7 @@
 
     </div>
 
-    <p class="mb-5 ml-0.5 text-gray-900 sm:text-base text-[14px] dark:text-gray-50">Projects and Recent Activity listed here are pulled live from my public <a href="https://github.com/harry55494" class="underline ">GitHub profile</a> via GitHub's API. Data is cached for up to 60 minutes. Force update it by clicking  <button onclick="{forceUpdateData}" class="underline cursor-pointer">here</button>. </p>
+    <p class="mb-5 ml-0.5 text-gray-900 sm:text-base text-[14px] dark:text-gray-50">Projects and Recent Activity listed here are pulled live from my public <a href="https://github.com/hphillingham" class="underline ">GitHub profile</a> via GitHub's API. Data is cached for up to 60 minutes. Force update it by clicking  <button onclick="{forceUpdateData}" class="underline cursor-pointer">here</button>. </p>
 
     <hr class="w-full m-auto dark:text-gray-100 mb-5" />
 

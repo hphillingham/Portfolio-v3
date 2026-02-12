@@ -8,7 +8,7 @@
 
     const externalLinks = {
         LinkedIn: "https://www.linkedin.com/in/harrison-phillingham/",
-        GitHub: "https://github.com/harry55494",
+        GitHub: "https://github.com/hphillingham",
         "OpenPGP Key": "https://keys.openpgp.org/search?q=harrison%40phillingham.com"
     }
 

@@ -7,13 +7,13 @@
     import { changeTheme, initialSetTheme } from "./theme_functions";
 
     let footerExtension = ''
-    let repoURL = 'https://github.com/Harry55494/Portfolio-v3'
+    let repoURL = 'https://github.com/hphillingham/Portfolio-v3'
 
     onMount(() => {
         initialSetTheme();
         if (document.location.href.toString().indexOf('pre.harrison.phillingham.com') > -1) {
             footerExtension = 'pre-release '
-            repoURL = 'https://github.com/Harry55494/Portfolio-v3/tree/development'
+            repoURL = 'https://github.com/hphillingham/Portfolio-v3/tree/development'
         }
     });
 
