@@ -4,6 +4,7 @@
         ArrowRightOutline,
         ArrowUpRightFromSquareOutline,
         CodeBranchOutline,
+        CodeForkOutline,
         CodeOutline,
         EyeOutline,
         RefreshOutline,
@@ -41,13 +42,20 @@
 
     let global_extractedRepoData = Object.values({});
     let global_extractedActivityData = Object.values({});
-    const global_repoFilterList = [
+    const global_repoDisplayFilterList = [
         "pyCatan",
         "Conquerors-of-Catan",
         "Portfolio-v3",
         "Hikers-Challenge",
         "Portfolio-v2",
     ];
+
+    const global_repoActivityFilterList = [
+        "BeReal-Export-Manager",
+        ...global_repoDisplayFilterList
+    ];
+
+
 
     let global_forceUpdateAll = false;
     let global_currentActivityLength = 10;
@@ -78,7 +86,7 @@
 
 
         global_extractedRepoData = data.repos
-            .filter((repo) => global_repoFilterList.includes(repo.name))
+            .filter((repo) => global_repoDisplayFilterList.includes(repo.name))
             .map((repo) => {
                 const overwriteKey = repo.name.toLowerCase().replace(/-/g, "_");
                 const repoOverwriteData = global_retrievedProjectDataOverwrites[overwriteKey];
@@ -97,8 +105,8 @@
                 };
             })
             .sort((a, b) => {
-                const indexA = global_repoFilterList.indexOf(a.name.replaceAll(" ", "-"));
-                const indexB = global_repoFilterList.indexOf(b.name.replaceAll(" ", "-"));
+                const indexA = global_repoDisplayFilterList.indexOf(a.name.replaceAll(" ", "-"));
+                const indexB = global_repoDisplayFilterList.indexOf(b.name.replaceAll(" ", "-"));
                 return indexA - indexB;
             });
 
@@ -148,7 +156,7 @@
         // NOTE: Stores already formatted data
         let allCommitActivity = [];
 
-        for (const repo of global_repoFilterList) {
+        for (const repo of global_repoActivityFilterList) {
             const repoTarget = repo.toLowerCase();
             const repoCommitActivity = [];
 
@@ -217,7 +225,9 @@
             await cacheData("ACTIVIY_DATA_CACHE", data, 720);
         }
 
-        global_extractedActivityData = data.repos.filter((repo) => repo.type !== 'PushEvent').map((repo) => {
+        global_extractedActivityData = data.repos
+            .filter((repo) => repo.type !== 'PushEvent' && repo.type !== 'BranchDeleteEvent' && repo.type !== 'DeleteEvent')
+            .map((repo) => {
 
             const repo_name = repo.repo.name.replace('hphillingham/', '')
 
@@ -227,6 +237,7 @@
                     case 'WatchEvent': return `Watched `
                     case 'CreateEvent': return `Created Branch '${repo.payload.ref}' in `
                     case 'PullRequestEvent': return `Created Pull Request #${repo.payload.number} in `
+                    case 'ForkEvent': return 'Forked'
                     default: return "An Event Happened"
                 }
             })();
@@ -238,6 +249,7 @@
                     case 'CreateEvent': return CodeBranchOutline;
                     case 'WatchEvent': return EyeOutline
                     case 'PullRequestEvent': return CodeBranchOutline
+                    case 'ForkEvent': return CodeForkOutline
                     default: return CodeBranchOutline;
                 }
 
@@ -315,7 +327,7 @@
 
     </div>
 
-    <p class="mb-5 ml-0.5 text-gray-900 sm:text-base text-[14px] dark:text-gray-50">Projects and Recent Activity listed here are pulled live from my public <a href="https://github.com/hphillingham" class="underline ">GitHub profile</a> via GitHub's API. Data is cached for up to 60 minutes. Force update it by clicking  <button onclick="{forceUpdateData}" class="underline cursor-pointer">here</button>. </p>
+    <p class="mb-5 ml-0.5 text-gray-900 sm:text-base text-[14px] dark:text-gray-50">Projects and Recent Activity listed here are pulled live from my public <a href="https://github.com/hphillingham" class="underline ">GitHub profile</a> via GitHub's API. Data is cached for up to 60 minutes. Force update it by clicking  <button type="button" onclick="{forceUpdateData}" class="underline cursor-pointer">here</button>. </p>
 
     <hr class="w-full m-auto dark:text-gray-100 mb-5" />
 
@@ -398,7 +410,7 @@
     </ul>
 
     <div class="width-full flex justify-center mt-8 sm:mt-4 sm:mb-16 mb-12">
-        <button id="ID_loadMoreActivityButton" class="underline content-center cursor-pointer hidden sm:text-[16px] text-[14px]" onclick="{increaseActivityDataLength}">Load More</button>
+        <button type="button" id="ID_loadMoreActivityButton" class="underline content-center cursor-pointer hidden sm:text-[16px] text-[14px]" onclick="{increaseActivityDataLength}">Load More</button>
         <p id="ID_endOfActivityText" class=" text-gray-900 sm:text-[16px] text-[14px] font-semibold dark:text-gray-100 hidden">You've reach the end</p>
     </div>
 
