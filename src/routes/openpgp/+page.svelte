@@ -1,19 +1,17 @@
 <script>
-    import {onMount} from "svelte";
+import { onMount } from "svelte";
 
-    async function getEmail(){
-        const response = await fetch("/data/email", { method: "GET" });
-        return await response.json()
-    }
+async function getEmail() {
+	const response = await fetch("/data/email", { method: "GET" });
+	return await response.json();
+}
 
-    let personalEmailAddress = '';
+let personalEmailAddress = "";
 
-    onMount(async () => {
-        const data = await getEmail();
-        personalEmailAddress = data.email;
-
-    })
-
+onMount(async () => {
+	const data = await getEmail();
+	personalEmailAddress = data.email;
+});
 </script>
 <div class="text-[14px] dark:text-gray-50 pt-4 pb-8 ">
 
@@ -40,11 +38,10 @@
     <div class="mb-6" >
         <p class="font-semibold mb-2">What is this?</p>
         <p class="mb-2">
-            OpenPGP is an open-source security tool that I use to digitally sign and encrypt emails.
-            It proves that the email came from me, and that it hasn't been tampered with along the way.
+            OpenPGP is an open standard for encryption and digital signatures. GnuPG (GPG) is the most popular open-source implementation, and is the tool I use.
         </p>
         <p class="mb-2">
-            When I send an email, I 'sign' it with my private key (which only I have). The recipient can then verify that the email received is really from me using my public key (shown below). This proves that the message is authentic, and has not been modified.
+            When I send an email, or create a commit, I 'sign' it with my private key (which only I have). The recipient or verifier can then check it using my paired public key, to verify that it came from me and hasn't been modified.
         </p>
         <p>
             OpenPGP can also be used to encrypt sensitive messages so only the intended recipient can read them. For this, both people need their own OpenPGP keys.

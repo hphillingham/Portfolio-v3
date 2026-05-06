@@ -1,9 +1,9 @@
 <script>
-    import {onMount} from "svelte";
+import { onMount } from "svelte";
 
-    onMount(() => {
-        document.location = "/openpgp"
-    });
+onMount(() => {
+	document.location = "/publickey";
+});
 </script>
 
 <p>Redirecting...</p>
