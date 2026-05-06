@@ -1,23 +1,24 @@
 <script>
-    import {onMount} from "svelte";
+import { onMount } from "svelte";
 
-    const externalLinks = [
-        { title: "GitHub", ref: "https://github.com/hphillingham/conquerors-of-catan" },
-    ];
+const externalLinks = [
+	{
+		title: "GitHub",
+		ref: "https://github.com/hphillingham/conquerors-of-catan",
+	},
+];
 
-    async function getEmail(){
-        const response = await fetch("/data/email", { method: "GET" });
-        return await response.json()
-    }
+async function getEmail() {
+	const response = await fetch("/data/email", { method: "GET" });
+	return await response.json();
+}
 
-    let personalEmailAddress = '';
+let personalEmailAddress = "";
 
-    onMount(async () => {
-        const data = await getEmail();
-        personalEmailAddress = `mailto:${data.email}`;
-
-    })
-
+onMount(async () => {
+	const data = await getEmail();
+	personalEmailAddress = `mailto:${data.email}`;
+});
 </script>
 
 <div class="flex flex-row content-center align-middle mt-4">

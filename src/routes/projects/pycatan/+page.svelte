@@ -1,7 +1,7 @@
 <script>
-    const externalLinks = [
-        { title: "GitHub", ref: "https://github.com/hphillingham/pyCatan" },
-    ];
+const externalLinks = [
+	{ title: "GitHub", ref: "https://github.com/hphillingham/pyCatan" },
+];
 </script>
 
 <div class="flex flex-row content-center align-middle mt-4">
