@@ -27,7 +27,7 @@ onMount(() => {
             <img src="https://cdn.simpleicons.org/git" alt="git_logo" class="h-5 w-auto mr-2 m-auto">
             Source ({footerExtension}v{versionNumber})
         </a>
-        <button class="hidden sm:flex flex-row" onclick={changeTheme} style="cursor: pointer; ">
+        <button type="button" class="hidden sm:flex flex-row" onclick={changeTheme} style="cursor: pointer; ">
             <MoonOutline id="moon_icon" class="h-4 w-auto m-auto ml-2 hidden dark:text-gray-50" />
             <SunOutline id="sun_icon" class="h-4 w-auto m-auto ml-2 hidden dark:text-gray-50" />
         </button>

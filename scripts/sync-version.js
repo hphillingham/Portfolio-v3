@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { versionNumber } from "../src/lib/version_number.js";
 
 // Update package.json

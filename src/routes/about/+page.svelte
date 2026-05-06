@@ -40,7 +40,7 @@ onMount(async () => {
 
     <ul class="flex flex-col gap-1 list-disc list-inside">
         {#each Object.entries(bodyChapterHeadings) as [heading, id]}
-            <li><a class="underline " href={"#" + id}>{heading}</a></li>
+            <li><a class="underline " href={`#${id}`}>{heading}</a></li>
         {/each}
     </ul>
 
