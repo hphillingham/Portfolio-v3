@@ -21,6 +21,12 @@ jobs:
           echo "PRs into production must come from development, not $HEAD_BRANCH" >&2
           exit 1
 
+      # The runner image has no git-lfs, which the checkout below needs
+      - name: Install Git LFS
+        run: |
+          apt-get update -qq -o Acquire::Retries=3
+          apt-get install -y --no-install-recommends -o Acquire::Retries=3 git-lfs
+
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           # static/ is stored in Git LFS, so without this the build ships pointer files
