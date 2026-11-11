@@ -27,6 +27,8 @@ jobs:
         with:
           # Commitizen needs the full history and tags to work out the next version
           fetch-depth: 0
+          # static/ is stored in Git LFS, so without this the build ships pointer files
+          lfs: true
 
       - uses: ./.gitea/actions/commitizen
 
