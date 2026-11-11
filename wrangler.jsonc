@@ -19,7 +19,7 @@
 		"development": {
 			"routes": [
 				{
-					"pattern": "pre.harrison.phillingham.com",
+					"pattern": "dev.harrison.phillingham.com",
 					"custom_domain": true
 				}
 			]

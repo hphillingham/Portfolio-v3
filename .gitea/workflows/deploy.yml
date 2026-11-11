@@ -1,6 +1,6 @@
 name: Deploy
 
-# development deploys to the portfolio-development Worker on pre.harrison.phillingham.com.
+# development deploys to the portfolio-development Worker on dev.harrison.phillingham.com.
 # production deploys to the portfolio Worker on harrison.phillingham.com.
 on:
   push:
