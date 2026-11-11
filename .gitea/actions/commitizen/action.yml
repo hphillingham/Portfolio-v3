@@ -1,0 +1,9 @@
+name: Commitizen
+description: Install the commitizen version that .pre-commit-config.yaml pins, so Renovate bumps it in one place
+
+runs:
+  using: composite
+  steps:
+    - shell: bash
+      run: |
+        pip install --break-system-packages "commitizen==$(sed -n '/commitizen-tools\/commitizen/{n;s/.*rev: v//p;}' .pre-commit-config.yaml)"

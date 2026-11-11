@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [development, production]
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    # $env/static/private inlines these at build time. Gitea reserves the GITHUB_ secret prefix.
+    env:
+      GITHUB_API_TOKEN: ${{ secrets.GH_API_TOKEN }}
+      EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
+    steps:
+      # Branch protection cannot restrict the source branch, so this marks the PR red
+      - name: Only development may merge into production
+        if: gitea.base_ref == 'production' && gitea.head_ref != 'development'
+        env:
+          HEAD_BRANCH: ${{ gitea.head_ref }}
+        run: |
+          echo "PRs into production must come from development, not $HEAD_BRANCH" >&2
+          exit 1
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+
+      - uses: ./.gitea/actions/commitizen
+
+      # Squash merges use the PR title as the commit message, and no local hook sees them
+      - name: PR title follows Conventional Commits
+        env:
+          PR_TITLE: ${{ gitea.event.pull_request.title }}
+        run: cz check --message "$PR_TITLE"
+
+      - uses: ./.gitea/actions/setup
+
+      - uses: ./.gitea/actions/checks

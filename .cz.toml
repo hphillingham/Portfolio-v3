@@ -1,0 +1,12 @@
+[tool.commitizen]
+name = "cz_conventional_commits"
+# Reads and writes the version in package.json
+version_provider = "npm"
+tag_format = "v$version"
+# git push --follow-tags only pushes annotated tags
+annotated_tag = true
+update_changelog_on_bump = true
+# [skip ci] stops Gitea Actions from building and deploying the bump commit again
+bump_message = "bump: version $current_version → $new_version [skip ci]"
+# The site reads its version from here
+version_files = ["src/lib/version_number.js:versionNumber"]

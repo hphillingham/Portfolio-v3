@@ -1,0 +1,24 @@
+name: Checks
+description: Lint and build the site, then bundle both Workers without deploying
+
+runs:
+  using: composite
+  steps:
+    - name: Lint
+      shell: bash
+      run: pnpm run lint
+
+    - name: Build
+      shell: bash
+      run: pnpm run build
+
+    # Bundles each Worker exactly as a deploy would, validating wrangler config
+    # and imports, without needing Cloudflare credentials or publishing anything.
+    # --env "" is the top-level config, which is production.
+    - name: Wrangler dry-run (production)
+      shell: bash
+      run: pnpm exec wrangler deploy --dry-run --outdir dist-check --env ""
+
+    - name: Wrangler dry-run (development)
+      shell: bash
+      run: pnpm exec wrangler deploy --dry-run --outdir dist-check --env development

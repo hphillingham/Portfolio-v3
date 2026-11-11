@@ -22,3 +22,6 @@ Thumbs.db
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 /notes/
+
+# Wrangler dry-run output
+/dist-check

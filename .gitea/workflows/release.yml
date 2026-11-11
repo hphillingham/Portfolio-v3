@@ -1,0 +1,54 @@
+name: Release
+
+# After a release merges into production, bump the version and changelog,
+# tag it, then merge it back into development so both branches agree.
+on:
+  push:
+    branches: [production]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  bump:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          # Commitizen needs the full history and tags to find commits since the last release
+          fetch-depth: 0
+          # A user token on the production push allowlist, so the bump gets past branch protection
+          token: ${{ secrets.RELEASE_TOKEN }}
+
+      - name: Commit as the maintainer
+        run: |
+          git config user.name "Harrison Phillingham"
+          git config user.email "harrison@phillingham.com"
+
+      - uses: ./.gitea/actions/commitizen
+
+      - name: Bump version and changelog
+        id: bump
+        run: |
+          code=0
+          cz bump --yes || code=$?
+          # 3 = no commits since the last tag, 21 = only chore, docs or content commits
+          if [ "$code" -eq 3 ] || [ "$code" -eq 21 ]; then echo "bumped=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          [ "$code" -eq 0 ] || exit "$code"
+          echo "bumped=true" >> "$GITHUB_OUTPUT"
+
+      - name: Push the bump
+        if: steps.bump.outputs.bumped == 'true'
+        run: git push --follow-tags origin HEAD:production
+
+      # Always, so the release merge commit reaches development even without a bump
+      - name: Merge production back into development
+        run: |
+          git fetch origin development
+          git switch -C development origin/development
+          git merge --no-edit production
+          git push origin development
