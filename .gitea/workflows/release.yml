@@ -21,8 +21,6 @@ jobs:
         with:
           # Commitizen needs the full history and tags to find commits since the last release
           fetch-depth: 0
-          # A user token on the production push allowlist, so the bump gets past branch protection
-          token: ${{ secrets.RELEASE_TOKEN }}
 
       - name: Commit as the maintainer
         run: |
