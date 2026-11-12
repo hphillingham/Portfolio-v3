@@ -1,0 +1,55 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"gitAuthor": "Renovate Bot <bot@renovate.com>",
+	"enabledManagers": ["npm", "github-actions", "pre-commit"],
+	"pre-commit": {
+		"enabled": true
+	},
+	"minimumReleaseAge": "7 days",
+	"minimumReleaseAgeBehaviour": "timestamp-required",
+	"semanticCommits": "enabled",
+	"dependencyDashboard": true,
+	"prHourlyLimit": 5,
+	"labels": ["renovate", "dependencies"],
+	"timezone": "Europe/London",
+	"schedule": ["on monday"],
+	"rebaseWhen": "behind-base-branch",
+	"postUpdateOptions": ["pnpmDedupe"],
+	"automerge": false,
+	"platformAutomerge": false,
+	"packageRules": [
+		{
+			"description": "disable runner image bumps (runs-on: ubuntu-24.04 -> 26.04) - runner OS is upgraded deliberately, not by PR",
+			"matchManagers": ["github-actions"],
+			"matchDepNames": ["ubuntu"],
+			"enabled": false
+		},
+		{
+			"description": "group all minor and patch updates into one weekly PR, automerged (squash) once the age gate and CI checks pass",
+			"matchUpdateTypes": ["minor", "patch"],
+			"groupName": "all non-major dependencies",
+			"automerge": true,
+			"automergeType": "pr",
+			"automergeStrategy": "squash"
+		},
+		{
+			"description": "0.x versions treat minor bumps as breaking, so require manual review of the group",
+			"matchCurrentVersion": "/^0\\./",
+			"matchUpdateTypes": ["minor"],
+			"automerge": false
+		},
+		{
+			"description": "major updates get their own PR per dependency for manual review, never grouped or automerged",
+			"matchUpdateTypes": ["major"],
+			"automerge": false,
+			"addLabels": ["major"]
+		}
+	],
+	"lockFileMaintenance": {
+		"enabled": true,
+		"automerge": true,
+		"automergeType": "pr",
+		"automergeStrategy": "squash",
+		"schedule": ["on monday"]
+	}
+}

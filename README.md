@@ -2,10 +2,12 @@
 
 <div align="center">
 
-# Portfolio v3 🏕️
+# Portfolio 🏕️
+
+**Version 3 - April 2025 to present**
 
 ### Live: <a href="https://harrison.phillingham.com">harrison.phillingham.com</a>
-### Dev: <a href="https://pre.harrison.phillingham.com">pre.harrison.phillingham.com</a>
+### Dev: <a href="https://dev.harrison.phillingham.com">dev.harrison.phillingham.com</a>
 
 &nbsp;
 

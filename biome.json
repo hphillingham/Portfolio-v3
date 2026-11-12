@@ -47,6 +47,15 @@
 					}
 				}
 			}
+		},
+		{
+			"includes": ["package.json"],
+			"json": {
+				"formatter": {
+					"indentStyle": "space",
+					"indentWidth": 2
+				}
+			}
 		}
 	],
 	"html": {

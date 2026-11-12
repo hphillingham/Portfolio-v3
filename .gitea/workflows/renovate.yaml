@@ -1,0 +1,23 @@
+name: Renovate
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+  push:
+    branches: [development]
+
+jobs:
+  renovate:
+    runs-on: ubuntu-24.04
+    container:
+      image: ghcr.io/renovatebot/renovate:44.222.4@sha256:306316fc9e8c424dde672590699d681f9c8764cc9152141d2c5059956ce1e3b8
+    steps:
+    - name: Run Renovate
+      run: renovate
+      env:
+        RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
+        RENOVATE_PLATFORM: gitea
+        RENOVATE_ENDPOINT: https://gitea.homelab.phillingham.com
+        RENOVATE_REPOSITORIES: Harrison/Portfolio
+        RENOVATE_HOST_RULES: '[{"matchHost":"github.com","token":"${{ secrets.GH_COM_TOKEN }}"}]'

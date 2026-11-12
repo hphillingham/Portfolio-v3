@@ -1,0 +1,28 @@
+{
+	"name": "portfolio",
+	"main": ".svelte-kit/cloudflare/_worker.js",
+	"compatibility_date": "2026-11-01",
+	"compatibility_flags": ["nodejs_compat"],
+	"send_metrics": false,
+	"assets": {
+		"binding": "ASSETS",
+		"directory": ".svelte-kit/cloudflare"
+	},
+	"routes": [
+		{
+			"pattern": "harrison.phillingham.com",
+			"custom_domain": true
+		}
+	],
+	// The top level is production. This is the development Worker, portfolio-development.
+	"env": {
+		"development": {
+			"routes": [
+				{
+					"pattern": "dev.harrison.phillingham.com",
+					"custom_domain": true
+				}
+			]
+		}
+	}
+}
