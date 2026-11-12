@@ -50,6 +50,8 @@ jobs:
           [ "$BRANCH" = production ] || v="$v-rc.$RUN_NUMBER"
           echo "version=$v" >> "$GITHUB_OUTPUT"
           echo "Deploying $BRANCH as $v"
+          # The footer shows this, so dev builds show their rc number too
+          echo "export const versionNumber = \"$v\";" > src/lib/version_number.js
 
       - uses: ./.gitea/actions/setup
 
