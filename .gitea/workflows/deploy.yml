@@ -44,10 +44,10 @@ jobs:
         id: version
         env:
           BRANCH: ${{ gitea.ref_name }}
-          RUN_NUMBER: ${{ gitea.run_number }}
         run: |
           v=$(cz bump --yes --get-next 2>/dev/null || cz version --project)
-          [ "$BRANCH" = production ] || v="$v-rc.$RUN_NUMBER"
+          # rc counts commits since the last release tag, so it starts again at 1 after each release
+          [ "$BRANCH" = production ] || v="$v-rc.$(git rev-list --count "$(git describe --tags --abbrev=0 --match 'v*')"..HEAD)"
           echo "version=$v" >> "$GITHUB_OUTPUT"
           echo "Deploying $BRANCH as $v"
           # The footer shows this, so dev builds show their rc number too
