@@ -1,5 +1,12 @@
 # Changelog
 
+## v3.4.5 (2026-11-12)
+
+### Fix
+
+- install git lfs on the runner before checkout
+- fetch git lfs files in ci and deploy checkouts
+
 ## v3.4.4 (2026-05-06)
 
 ### Changed
