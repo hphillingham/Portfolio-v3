@@ -33,6 +33,17 @@
 			"automergeStrategy": "squash"
 		},
 		{
+			"description": "new Biome versions can change the config schema and formatting, so migrate and reformat on the update branch",
+			"matchPackageNames": ["@biomejs/biome"],
+			"postUpgradeTasks": {
+				"commands": [
+					"npx --yes @biomejs/biome@{{{newVersion}}} migrate --write",
+					"npx --yes @biomejs/biome@{{{newVersion}}} format --write ."
+				],
+				"fileFilters": ["**/*"]
+			}
+		},
+		{
 			"description": "0.x versions treat minor bumps as breaking, so require manual review of the group",
 			"matchCurrentVersion": "/^0\\./",
 			"matchUpdateTypes": ["minor"],

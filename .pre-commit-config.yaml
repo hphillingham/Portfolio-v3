@@ -3,20 +3,24 @@
 default_install_hook_types: [pre-commit, commit-msg]
 
 repos:
-  -   repo: https://github.com/pre-commit/pre-commit-hooks
-      rev: v6.0.0
-      hooks:
-        -   id: check-yaml
-            args: [--allow-multiple-documents]
-        -   id: end-of-file-fixer
-        -   id: trailing-whitespace
-        -   id: check-docstring-first
-        -   id: check-added-large-files
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-yaml
+        args: [--allow-multiple-documents]
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-docstring-first
+      - id: check-added-large-files
   - repo: https://github.com/commitizen-tools/commitizen
     rev: v4.19.3
     hooks:
       - id: commitizen
-  - repo: https://github.com/biomejs/pre-commit
-    rev: v2.4.14
+  # local hook, so it runs the same Biome version as package.json and CI
+  - repo: local
     hooks:
       - id: biome-check
+        name: biome check
+        entry: pnpm exec biome check --write --files-ignore-unknown=true --no-errors-on-unmatched
+        language: system
+        types: [text]

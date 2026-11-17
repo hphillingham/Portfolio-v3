@@ -12,7 +12,7 @@ let repoURL = "https://github.com/hphillingham/Portfolio-v3";
 onMount(() => {
 	initialSetTheme();
 	if (
-		document.location.href.toString().indexOf("pre.harrison.phillingham.com") >
+		document.location.href.toString().indexOf("dev.harrison.phillingham.com") >
 		-1
 	) {
 		footerExtension = "pre-release ";

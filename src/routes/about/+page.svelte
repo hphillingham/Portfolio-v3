@@ -52,7 +52,7 @@ onMount(async () => {
 
     <p class="mt-2 ml-0.5">Outside of working for Aurora, I also work part-time for Daylight CPT, providing Microsoft 365 support, device management, and various other technical services.</p>
 
-    <p class="mt-2 ml-0.5">When not working, I'm usually programming (see my projects <a class="underline " href="/projects">here</a>) or tinkering with something (see below!).</p>
+    <p class="mt-2 ml-0.5">When not working, I'm usually programming (see <a class="underline " href="/projects">my projects</a>) or tinkering with something (see below!).</p>
 
     <h3 id="homelab" class="text-2xl font-bold mt-8 mb-4">Homelab</h3>
 

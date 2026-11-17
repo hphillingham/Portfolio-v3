@@ -14,7 +14,7 @@ let titleExtension = "";
 onMount(() => {
 	currentPagePath = document.location.pathname.toString().split("/")[1];
 	if (
-		document.location.href.toString().indexOf("pre.harrison.phillingham.com") >
+		document.location.href.toString().indexOf("dev.harrison.phillingham.com") >
 		-1
 	) {
 		titleExtension = " - Preview 🛠️";
