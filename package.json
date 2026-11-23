@@ -20,7 +20,7 @@
     "@tailwindcss/vite": "^4.3.5",
     "mdsvex": "^0.12.8",
     "svelte": "5.57.3",
-    "svelte-sitemap": "^2.8.0",
+    "svelte-sitemap": "^4.0.0",
     "tailwindcss": "^4.3.5",
     "vite": "8.3.8",
     "wrangler": "^4.160.0"
