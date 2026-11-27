@@ -214,8 +214,8 @@ importers:
         specifier: ^5.0.5
         version: 5.0.5
       simple-icons:
-        specifier: ^14.15.0
-        version: 14.15.0
+        specifier: ^16.0.0
+        version: 16.38.1
     devDependencies:
       '@biomejs/biome':
         specifier: 2.6.8
@@ -1526,8 +1526,8 @@ packages:
       '@types/node':
         optional: true
 
-  simple-icons@14.15.0:
-    resolution: {integrity: sha512-yjlJ8skP4isCd4dQTDGFbv0hQgDIr57DbWaovEeHADPAZa5DBEAs+3ZnBb76ti+yz7/OzFI3SqTP1SKku1uhCw==}
+  simple-icons@16.38.1:
+    resolution: {integrity: sha512-q4JnGp1cgeASp4jzEsmSh/7BD/e2y7aYO8XST+QBEvOJ5wzZ/9WRmKsI+QUwkfPUSiXC+sfh2+QetD38zl3N0g==}
     engines: {node: '>=0.12.18'}
 
   sirv@3.0.2:
@@ -2784,7 +2784,7 @@ snapshots:
       '@img/sharp-win32-x64': 0.35.5
       '@types/node': 26.6.6
 
-  simple-icons@14.15.0: {}
+  simple-icons@16.38.1: {}
 
   sirv@3.0.2:
     dependencies:
